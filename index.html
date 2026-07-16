@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXTELL Industrial Large Ceiling Fans | HVLS Factory Fans</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        :root {
+            --primary: #005ea8;
+            --dark: #1a2430;
+            --light: #f5f7fa;
+            --gray: #666;
+            --white: #fff;
+        }
+        /* Header Nav */
+        header {
+            background: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        .logo {
+            color: var(--white);
+            font-size: 24px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #42a5f5;
+        }
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            color: #42a5f5;
+        }
+        /* Hero Banner */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(0,30,60,0.7), rgba(0,30,60,0.7)), url('https://images.unsplash.com/photo-1590489743967-288a8974f599') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+        .btn {
+            display: inline-block;
+            padding: 15px 36px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background: #004882;
+        }
+        .btn-light {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 15px;
+        }
+        .btn-light:hover {
+            background: var(--white);
+            color: var(--dark);
+        }
+        /* Section Base */
+        section {
+            padding: 90px 20px;
+        }
+        .section-wrap {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 12px;
+        }
+        .section-title p {
+            color: var(--gray);
+            font-size: 17px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        /* Product Line */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+        .product-card {
+            background: var(--white);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+        }
+        .product-img {
+            height: 240px;
+            background: #e8edf2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-img img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        .product-info {
+            padding: 25px;
+        }
+        .product-info h3 {
+            font-size: 22px;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .product-info p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        /* Advantage Area */
+        .advantage {
+            background: var(--light);
+        }
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+        .adv-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+        .adv-item h4 {
+            font-size: 20px;
+            margin: 16px 0 10px;
+            color: var(--dark);
+        }
+        .adv-item p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+        /* Application Scene */
+        .scene-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .scene-card {
+            height: 220px;
+            border-radius: 6px;
+            position: relative;
+            overflow: hidden;
+        }
+        .scene-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+        }
+        .scene-card span {
+            position: absolute;
+            bottom: 18px;
+            left: 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            z-index: 2;
+        }
+        /* Contact Section */
+        .contact {
+            background: var(--dark);
+            color: var(--white);
+        }
+        .contact-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .contact-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        .contact-text p {
+            line-height: 1.8;
+            opacity: 0.85;
+            margin-bottom: 25px;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border: none;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        /* Footer */
+        footer {
+            background: #0f1720;
+            color: #aaa;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        /* Mobile Responsive */
+        @media(max-width:768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 34px;
+            }
+            .contact-wrap {
+                grid-template-columns: 1fr;
+            }
+            .btn-light {
+                margin-left: 0;
+                margin-top: 15px;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">AXTELL <span>FANS</span></a>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#products">Products</a>
+                <a href="#advantages">Advantages</a>
+                <a href="#scenes">Applications</a>
+                <a href="#contact">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>HVLS Large Industrial Ceiling Fans</h1>
+            <p>7m Super Long Blades, Energy Saving, Low Noise, Perfect for Factory, Warehouse, Gym & Farm</p>
+            <div>
+                <a href="#products" class="btn">View Our Fans</a>
+                <a href="#contact" class="btn btn-light">Get Free Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Section -->
+    <section id="products">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>Our HVLS Industrial Ceiling Fans</h2>
+                <p>High Volume Low Speed big ceiling fans with diameters from 2m to 7m, stable performance, low power consumption</p>
+            </div>
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=7M+Big+Fan" alt="7m industrial ceiling fan">
+                    </div>
+                    <div class="product-info">
+                        <h3>7 Meter Giant HVLS Fan</h3>
+                        <p>Largest model for huge factory workshops, high air coverage, only 1.5kW power.</p>
+                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=5M+Ceiling+Fan" alt="5m factory fan">
+                    </div>
+                    <div class="product-info">
+                        <h3>5M Standard Industrial Fan</h3>
+                        <p>Balanced size & airflow, ideal for warehouses, logistics parks, supermarkets.</p>
+                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=3M+Commercial+Fan" alt="3m commercial fan">
+                    </div>
+                    <div class="product-info">
+                        <h3>3M Commercial HVLS Fan</h3>
+                        <p>Smaller model for gyms, restaurants, exhibition halls, low installation cost.</p>
+                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Advantages -->
+    <section class="advantage" id="advantages">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>Why Choose AXTELL HVLS Fans</h2>
+                <p>Advanced motor technology, durable structure, 5-year warranty for all core parts</p>
+            </div>
+            <div class="adv-grid">
+                <div class="adv-item">
+                    <h4>Huge Air Coverage</h4>
+                    <p>One 7m fan covers over 1,000 square meters, uniform air circulation without dead zones.</p>
+                </div>
+                <div class="adv-item">
+                    <h4>Ultra Energy Saving</h4>
+                    <p>Consume 90% less electricity than small industrial exhaust fans, cut cooling cost greatly.</p>
+                </div>
+                <div class="adv-item">
+                    <h4>Low Noise & Safe</h4>
+                    <p>Brushless PMSM motor, running noise below 45dB, anti-drop safety cable design.</p>
+                </div>
+                <div class="adv-item">
+                    <h4>All Weather Durable</h4>
+                    <p>Aluminum alloy blades, anti-rust coating, suitable for humid workshops and farms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Scenarios -->
+    <section id="scenes">
+        <div class="section-wrap">
+            <div class="section-title">
+                <h2>Wide Application Scenarios</h2>
+                <p>Our large ceiling fans serve multiple industrial and commercial industries worldwide</p>
+            </div>
+            <div class="scene-grid">
+                <div class="scene-card" style="background:#8899aa;">
+                    <span>Manufacturing Factory</span>
+                </div>
+                <div class="scene-card" style="background:#7799bb;">
+                    <span>Warehouse & Logistics</span>
+                </div>
+                <div class="scene-card" style="background:#6688aa;">
+                    <span>Gym & Sports Hall</span>
+                </div>
+                <div class="scene-card" style="background:#99aabb;">
+                    <span>Livestock Farm</span>
+                </div>
+                <div class="scene-card" style="background:#557799;">
+                    <span>Supermarket & Mall</span>
+                </div>
+                <div class="scene-card" style="background:#778899;">
+                    <span>Exhibition Center</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us -->
+    <section class="contact" id="contact">
+        <div class="section-wrap contact-wrap">
+            <div class="contact-text">
+                <h3>Get A Free Custom Quote</h3>
+                <p>Tell us your factory size, ceiling height and usage, our engineer will provide professional fan layout solution within 24 hours.</p>
+                <p><strong>Email:</strong> sales@axtellfans.com<br>
+                <strong>Tel:</strong> +1 214 593 5233<br>
+                <strong>Service:</strong> Global shipping & overseas installation guide</p>
+            </div>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Full Name" required>
+                <input type="email" placeholder="Your Email Address" required>
+                <input type="tel" placeholder="Phone Number / WhatsApp">
+                <textarea placeholder="Message: Factory area, ceiling height, fan model inquiry..." required></textarea>
+                <button type="submit" class="btn" style="border:none;cursor:pointer;">Send Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AXTELL Industrial HVLS Ceiling Fans. All Rights Reserved. English Official Website</p>
+    </footer>
+
+    <!-- Simple Smooth Scroll JS -->
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e){
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if(targetElement){
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    })
+                }
+            })
+        })
+        // Form submit alert
+        document.querySelector('.contact-form').addEventListener('submit', function(e){
+            e.preventDefault();
+            alert('Your inquiry has been submitted successfully! We will contact you soon.');
+            this.reset();
+        })
+    </script>
+</body>
+</html>
