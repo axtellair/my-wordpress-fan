@@ -13,10 +13,12 @@
         }
         :root {
             --primary: #005ea8;
+            --primary-light: #42a5f5;
             --dark: #1a2430;
             --light: #f5f7fa;
             --gray: #666;
             --white: #fff;
+            --border-gray: #ddd;
         }
         /* Header Nav */
         header {
@@ -41,7 +43,7 @@
             text-decoration: none;
         }
         .logo span {
-            color: #42a5f5;
+            color: var(--primary-light);
         }
         .nav-links a {
             color: var(--white);
@@ -51,7 +53,7 @@
             transition: 0.3s;
         }
         .nav-links a:hover {
-            color: #42a5f5;
+            color: var(--primary-light);
         }
         /* Hero Banner */
         .hero {
@@ -86,6 +88,8 @@
             border-radius: 4px;
             font-weight: 600;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
         .btn:hover {
             background: #004882;
@@ -98,6 +102,10 @@
         .btn-light:hover {
             background: var(--white);
             color: var(--dark);
+        }
+        .btn-sm {
+            padding: 10px 24px;
+            font-size: 14px;
         }
         /* Section Base */
         section {
@@ -122,11 +130,41 @@
             max-width: 700px;
             margin: 0 auto;
         }
-        /* Product Line */
+
+        /* Product Tab Switch Style */
+        .product-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+        .tab-btn {
+            padding: 12px 30px;
+            border: 1px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Product Grid & Card */
         .product-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 35px;
+            margin-bottom: 80px;
         }
         .product-card {
             background: var(--white);
@@ -162,6 +200,38 @@
             margin-bottom: 20px;
             line-height: 1.6;
         }
+
+        /* Spec Table Style */
+        .spec-table-wrap {
+            overflow-x: auto;
+        }
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+        .spec-table th,
+        .spec-table td {
+            border: 1px solid var(--border-gray);
+            padding: 16px 12px;
+            text-align: center;
+        }
+        .spec-table th {
+            background-color: var(--dark);
+            color: #fff;
+        }
+        .spec-table tr:nth-child(even) {
+            background-color: #f2f5f9;
+        }
+        .spec-table tr:hover {
+            background-color: #e1ecf7;
+        }
+        .spec-table .first-col {
+            text-align: left;
+            font-weight: 600;
+            background: #f0f4f8;
+        }
+
         /* Advantage Area */
         .advantage {
             background: var(--light);
@@ -184,6 +254,7 @@
             color: var(--gray);
             line-height: 1.6;
         }
+
         /* Application Scene */
         .scene-grid {
             display: grid;
@@ -211,6 +282,7 @@
             font-weight: 600;
             z-index: 2;
         }
+
         /* Contact Section */
         .contact {
             background: var(--dark);
@@ -243,6 +315,7 @@
             min-height: 120px;
             resize: vertical;
         }
+
         /* Footer */
         footer {
             background: #0f1720;
@@ -250,6 +323,7 @@
             text-align: center;
             padding: 30px 20px;
         }
+
         /* Mobile Responsive */
         @media(max-width:768px) {
             .nav-links {
@@ -266,6 +340,9 @@
                 margin-top: 15px;
                 display: block;
             }
+            .product-tabs {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
@@ -277,6 +354,7 @@
             <nav class="nav-links">
                 <a href="#home">Home</a>
                 <a href="#products">Products</a>
+                <a href="#specs">Specifications</a>
                 <a href="#advantages">Advantages</a>
                 <a href="#scenes">Applications</a>
                 <a href="#contact">Contact Us</a>
@@ -296,46 +374,208 @@
         </div>
     </section>
 
-    <!-- Product Section -->
+    <!-- Product Section With Tabs: Ceiling Fan / Floor Fan / Accessories -->
     <section id="products">
         <div class="section-wrap">
             <div class="section-title">
-                <h2>Our HVLS Industrial Ceiling Fans</h2>
-                <p>High Volume Low Speed big ceiling fans with diameters from 2m to 7m, stable performance, low power consumption</p>
+                <h2>Our Full Product Range</h2>
+                <p>Three categories: HVLS Ceiling Fans, Industrial Floor Fans & Fan Spare Parts</p>
             </div>
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=7M+Big+Fan" alt="7m industrial ceiling fan">
+
+            <!-- Tab Buttons -->
+            <div class="product-tabs">
+                <button class="tab-btn active" data-tab="ceiling">HVLS Ceiling Fans</button>
+                <button class="tab-btn" data-tab="floor">Industrial Floor Fans</button>
+                <button class="tab-btn" data-tab="accessory">Fan Accessories</button>
+            </div>
+
+            <!-- Tab 1: Ceiling Fans -->
+            <div class="tab-content active" id="ceiling">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=7M+Giant+HVLS" alt="7m industrial ceiling fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>7 Meter Giant HVLS Fan</h3>
+                            <p>Largest model for huge factory workshops, high air coverage, only 1.5kW power.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>7 Meter Giant HVLS Fan</h3>
-                        <p>Largest model for huge factory workshops, high air coverage, only 1.5kW power.</p>
-                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=5M+HVLS+Fan" alt="5m factory fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>5M Standard Industrial Fan</h3>
+                            <p>Balanced size & airflow, ideal for warehouses, logistics parks, supermarkets.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=3M+Commercial+Fan" alt="3m commercial fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>3M Commercial HVLS Fan</h3>
+                            <p>Smaller model for gyms, restaurants, exhibition halls, low installation cost.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Product 2 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=5M+Ceiling+Fan" alt="5m factory fan">
+            </div>
+
+            <!-- Tab 2: Industrial Floor Fans -->
+            <div class="tab-content" id="floor">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=750mm+Floor+Fan" alt="750mm industrial floor fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>750mm Heavy Duty Floor Fan</h3>
+                            <p>High wind speed, metal frame, dustproof design for workshop cooling.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>5M Standard Industrial Fan</h3>
-                        <p>Balanced size & airflow, ideal for warehouses, logistics parks, supermarkets.</p>
-                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=900mm+Stand+Fan" alt="900mm stand fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>900mm Adjustable Stand Fan</h3>
+                            <p>Height adjustable, 3 speed control, used for workshop and construction site.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=1000mm+Big+Floor+Fan" alt="1000mm large floor fan">
+                        </div>
+                        <div class="product-info">
+                            <h3>1000mm Super Large Floor Fan</h3>
+                            <p>Strong airflow, wide coverage, perfect for large open workshops.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Product 3 -->
-                <div class="product-card">
-                    <div class="product-img">
-                        <img src="https://via.placeholder.com/300x200/cccccc/333333?text=3M+Commercial+Fan" alt="3m commercial fan">
+            </div>
+
+            <!-- Tab3: Fan Accessories -->
+            <div class="tab-content" id="accessory">
+                <div class="product-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=Aluminum+Fan+Blades" alt="aluminum fan blades">
+                        </div>
+                        <div class="product-info">
+                            <h3>Aluminum Alloy Fan Blades</h3>
+                            <p>Anti-rust, high toughness, replacement spare parts for all HVLS models.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>3M Commercial HVLS Fan</h3>
-                        <p>Smaller model for gyms, restaurants, exhibition halls, low installation cost.</p>
-                        <a href="#contact" class="btn" style="padding:10px 24px;font-size:14px;">Inquire Now</a>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=PMSM+Motor+Drive" alt="motor driver controller">
+                        </div>
+                        <div class="product-info">
+                            <h3>PMSM Motor & Controller</h3>
+                            <p>Original permanent magnet motor, variable frequency speed drive system.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
                     </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="https://via.placeholder.com/300x200/cccccc/333333?text=Safety+Cable+Kit" alt="safety cable installation kit">
+                        </div>
+                        <div class="product-info">
+                            <h3>Safety Cable & Mounting Kit</h3>
+                            <p>Anti-fall safety wire, suspension bracket, full installation hardware set.</p>
+                            <a href="#contact" class="btn btn-sm">Inquire Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Spec Table -->
+            <div id="specs">
+                <div class="section-title">
+                    <h2>HVLS Ceiling Fan Technical Specifications</h2>
+                    <p>Compare core parameters of 3m / 5m / 7m industrial ceiling fans</p>
+                </div>
+                <div class="spec-table-wrap">
+                    <table class="spec-table">
+                        <thead>
+                            <tr>
+                                <th class="first-col">Technical Parameter</th>
+                                <th>3M Commercial Fan</th>
+                                <th>5M Standard Fan</th>
+                                <th>7M Giant Fan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="first-col">Fan Diameter</td>
+                                <td>3 Meters</td>
+                                <td>5 Meters</td>
+                                <td>7 Meters</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Rated Power</td>
+                                <td>0.55 KW</td>
+                                <td>0.75 KW</td>
+                                <td>1.5 KW</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Motor Type</td>
+                                <td>Permanent Magnet Synchronous Motor</td>
+                                <td>Permanent Magnet Synchronous Motor</td>
+                                <td>Permanent Magnet Synchronous Motor</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Max Rotation Speed</td>
+                                <td>120 RPM</td>
+                                <td>85 RPM</td>
+                                <td>60 RPM</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Number of Blades</td>
+                                <td>6 PCS Aluminum Alloy Blades</td>
+                                <td>6 PCS Aluminum Alloy Blades</td>
+                                <td>6 PCS Aluminum Alloy Blades</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Effective Coverage Area</td>
+                                <td>200 ㎡</td>
+                                <td>600 ㎡</td>
+                                <td>1000 ㎡+</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Operating Noise</td>
+                                <td>≤ 40 dB</td>
+                                <td>≤ 43 dB</td>
+                                <td>≤ 45 dB</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Suitable Ceiling Height</td>
+                                <td>3.0m – 6.0m</td>
+                                <td>4.0m – 9.0m</td>
+                                <td>6.0m – 14.0m</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Input Voltage</td>
+                                <td>380V / 220V Customized</td>
+                                <td>380V / 220V Customized</td>
+                                <td>380V / 220V Customized</td>
+                            </tr>
+                            <tr>
+                                <td class="first-col">Warranty of Core Parts</td>
+                                <td>5 Years</td>
+                                <td>5 Years</td>
+                                <td>5 Years</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -369,7 +609,7 @@
         </div>
     </section>
 
-    <!-- Application Scenarios -->
+    <!-- Application Scenarios（新增2个场景，共8个） -->
     <section id="scenes">
         <div class="section-wrap">
             <div class="section-title">
@@ -395,6 +635,12 @@
                 <div class="scene-card" style="background:#778899;">
                     <span>Exhibition Center</span>
                 </div>
+                <div class="scene-card" style="background:#607d9b;">
+                    <span>Office Building</span>
+                </div>
+                <div class="scene-card" style="background:#4a6887;">
+                    <span>Shopping Center</span>
+                </div>
             </div>
         </div>
     </section>
@@ -414,7 +660,7 @@
                 <input type="email" placeholder="Your Email Address" required>
                 <input type="tel" placeholder="Phone Number / WhatsApp">
                 <textarea placeholder="Message: Factory area, ceiling height, fan model inquiry..." required></textarea>
-                <button type="submit" class="btn" style="border:none;cursor:pointer;">Send Inquiry</button>
+                <button type="submit" class="btn">Send Inquiry</button>
             </form>
         </div>
     </section>
@@ -424,8 +670,21 @@
         <p>&copy; 2026 AXTELL Industrial HVLS Ceiling Fans. All Rights Reserved. English Official Website</p>
     </footer>
 
-    <!-- Simple Smooth Scroll JS -->
+    <!-- JavaScript -->
     <script>
+        // Tab Switch Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                const targetTab = btn.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+            })
+        })
+
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e){
@@ -440,6 +699,7 @@
                 }
             })
         })
+
         // Form submit alert
         document.querySelector('.contact-form').addEventListener('submit', function(e){
             e.preventDefault();
