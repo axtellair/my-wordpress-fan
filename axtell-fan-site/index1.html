@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AXTELL FAN — Industrial-Grade Ceiling & Mobile Fans</title>
+    <meta name="description" content="AXTELL FAN manufactures industrial ceiling fans, mobile fans, and accessories. Massive coverage, low noise, energy efficient." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" referrerpolicy="no-referrer" />
+    <style>
+      /* ============================================================
+         AXTELL FAN — Theme tokens
+         ============================================================ */
+      :root {
+        --bg-dark: #1f3a52;
+        --bg-dark-2: #28486a;
+        --bg-dark-3: #335880;
+        --bg-light: #f5f7fa;
+        --bg-light-2: #ffffff;
+        --accent: #f5c542;
+        --accent-dark: #e0a82e;
+        --accent-soft: rgba(245, 197, 66, 0.16);
+        --text-light: #ffffff;
+        --text-light-2: #d8e4f0;
+        --text-light-3: #a4b5c7;
+        --text-dark: #1a1a2e;
+        --text-dark-2: #4a5563;
+        --border-dark: rgba(255, 255, 255, 0.14);
+        --border-light: #e3e8ef;
+        --success: #2ecc71;
+        --error: #e74c3c;
+        --warning: #f39c12;
+        --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.55);
+        --shadow-md: 0 12px 30px -12px rgba(0, 0, 0, 0.35);
+        --shadow-sm: 0 4px 14px -4px rgba(0, 0, 0, 0.25);
+        --radius-lg: 18px;
+        --radius-md: 12px;
+        --radius-sm: 8px;
+        --header-h: 72px;
+        --maxw: 1200px;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* ============================================================
+         Reset & base
+         ============================================================ */
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-light);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; text-decoration: none; }
+      button { font-family: inherit; cursor: pointer; border: none; background: none; }
+      ul { list-style: none; }
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+      /* ============================================================
+         Layout helpers
+         ============================================================ */
+      .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+      .section { padding: 96px 0; position: relative; }
+      .section--light { background: var(--bg-light); color: var(--text-dark); }
+      .section--dark { background: var(--bg-dark-2); color: var(--text-light); }
+      .section-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+      .section-head .eyebrow {
+        display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 2px;
+        text-transform: uppercase; color: var(--accent); margin-bottom: 14px;
+      }
+      .section-head h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; line-height: 1.15; margin-bottom: 16px; }
+      .section-head p { font-size: 17px; color: var(--text-dark-2); }
+      .section--dark .section-head p { color: var(--text-light-2); }
+      .text-accent { color: var(--accent); }
+
+      /* ============================================================
+         Buttons
+         ============================================================ */
+      .btn {
+        display: inline-flex; align-items: center; gap: 10px;
+        padding: 14px 28px; border-radius: var(--radius-sm);
+        font-size: 15px; font-weight: 600; letter-spacing: 0.3px;
+        transition: all 0.25s var(--ease); white-space: nowrap;
+      }
+      .btn--primary { background: var(--accent); color: var(--bg-dark); }
+      .btn--primary:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 10px 24px -8px rgba(232,184,48,0.5); }
+      .btn--ghost { border: 1.5px solid rgba(255,255,255,0.4); color: var(--text-light); }
+      .btn--ghost:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+      .btn--dark { background: var(--bg-dark); color: var(--text-light); }
+      .btn--dark:hover { background: #0d1820; transform: translateY(-2px); }
+
+      /* ============================================================
+         Header / Nav
+         ============================================================ */
+      .header {
+        position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+        height: var(--header-h); display: flex; align-items: center;
+        background: transparent; transition: background 0.35s var(--ease), box-shadow 0.35s var(--ease), border-color 0.35s var(--ease);
+        border-bottom: 1px solid transparent;
+      }
+      .header.scrolled {
+        background: rgba(22, 36, 47, 0.85);
+        backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border-bottom-color: var(--border-dark);
+        box-shadow: 0 6px 24px -12px rgba(0,0,0,0.6);
+      }
+      .nav { display: flex; align-items: center; justify-content: space-between; width: 100%; }
+      .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 20px; letter-spacing: 1px; }
+      .brand .brand-mark {
+        width: 38px; height: 38px; border-radius: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+        display: grid; place-items: center; color: var(--bg-dark); font-size: 18px;
+        box-shadow: 0 6px 16px -6px rgba(232,184,48,0.6);
+      }
+      .brand span { color: var(--accent); }
+
+      .nav-links { display: flex; align-items: center; gap: 4px; }
+      .nav-links > li > a, .nav-links > li > button {
+        display: inline-flex; align-items: center; gap: 6px;
+        padding: 10px 16px; font-size: 15px; font-weight: 500;
+        color: var(--text-light-2); border-radius: var(--radius-sm);
+        transition: color 0.2s var(--ease), background 0.2s var(--ease);
+      }
+      .nav-links > li > a:hover, .nav-links > li > button:hover { color: var(--accent); background: rgba(255,255,255,0.04); }
+      .nav-links .active { color: var(--accent); }
+
+      /* Dropdown */
+      .has-dropdown { position: relative; }
+      .dropdown {
+        position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%) translateY(8px);
+        background: var(--bg-dark-3); border: 1px solid var(--border-dark);
+        border-radius: var(--radius-md); min-width: 220px; padding: 8px;
+        box-shadow: var(--shadow-lg); opacity: 0; visibility: hidden;
+        transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+      }
+      .has-dropdown:hover .dropdown, .has-dropdown.open .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+      .dropdown a { display: flex; align-items: center; gap: 12px; padding: 11px 14px; border-radius: var(--radius-sm); font-size: 14.5px; color: var(--text-light-2); transition: background 0.18s var(--ease), color 0.18s var(--ease); }
+      .dropdown a i { width: 18px; color: var(--accent); }
+      .dropdown a:hover { background: rgba(232,184,48,0.1); color: var(--text-light); }
+
+      .nav-cta { display: flex; align-items: center; gap: 12px; }
+      .nav-toggle { display: none; width: 44px; height: 44px; border-radius: 10px; color: var(--text-light); font-size: 22px; }
+
+      /* ============================================================
+         Hero
+         ============================================================ */
+      .hero {
+        position: relative; min-height: 100vh; display: flex; align-items: center;
+        background: radial-gradient(ellipse at 70% 30%, #243a4d 0%, var(--bg-dark) 55%, #0f1a23 100%);
+        overflow: hidden; padding-top: var(--header-h);
+      }
+      .hero::before {
+        content: ""; position: absolute; inset: 0;
+        background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+        background-size: 28px 28px; opacity: 0.6; pointer-events: none;
+      }
+      .hero-inner { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; position: relative; z-index: 2; }
+      .hero-copy .badge {
+        display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px;
+        background: var(--accent-soft); border: 1px solid rgba(232,184,48,0.3);
+        border-radius: 999px; font-size: 13px; font-weight: 600; color: var(--accent); margin-bottom: 24px;
+      }
+      .hero h1 { font-size: clamp(34px, 5.4vw, 60px); font-weight: 900; line-height: 1.08; letter-spacing: -1px; margin-bottom: 22px; }
+      .hero h1 .accent { color: var(--accent); }
+      .hero p.lead { font-size: clamp(16px, 1.8vw, 19px); color: var(--text-light-2); max-width: 540px; margin-bottom: 36px; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 48px; }
+      .hero-stats { display: flex; gap: 36px; flex-wrap: wrap; padding-top: 28px; border-top: 1px solid var(--border-dark); }
+      .hero-stats .stat .num { font-size: 30px; font-weight: 800; color: var(--accent); line-height: 1; }
+      .hero-stats .stat .label { font-size: 13px; color: var(--text-light-3); margin-top: 6px; text-transform: uppercase; letter-spacing: 1px; }
+
+      /* Fan illustration */
+      .fan-stage { display: grid; place-items: center; position: relative; }
+      .fan-glow { position: absolute; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle, rgba(220,225,232,0.14), transparent 65%); filter: blur(8px); }
+      .fan { position: relative; width: min(420px, 80vw); aspect-ratio: 1; }
+      .fan-hub {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 11%; height: 11%; border-radius: 50%;
+        background: radial-gradient(circle at 35% 35%, #d8dde3, #9aa3ad 70%, #6b7480);
+        border: 2px solid #c5cdd6; z-index: 5;
+        box-shadow: 0 0 0 4px rgba(220,225,232,0.12), inset 0 0 10px rgba(0,0,0,0.35);
+      }
+      .fan-blades { position: absolute; inset: 0; animation: spin 4s linear infinite; transform-origin: center; }
+      .blade { position: absolute; top: 50%; left: 50%; width: 47%; height: 6%; transform-origin: 0% 50%; }
+      .blade::after {
+        content: ""; position: absolute; inset: 0; border-radius: 2px 50% 50% 2px;
+        background: linear-gradient(180deg, #eef1f4, #c5cdd6 55%, #9aa3ad);
+        border: 1px solid rgba(180,190,200,0.5);
+        box-shadow: 0 3px 10px rgba(0,0,0,0.35);
+      }
+      .blade:nth-child(1) { transform: rotate(0deg); }
+      .blade:nth-child(2) { transform: rotate(72deg); }
+      .blade:nth-child(3) { transform: rotate(144deg); }
+      .blade:nth-child(4) { transform: rotate(216deg); }
+      .blade:nth-child(5) { transform: rotate(288deg); }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      .fan-ring { position: absolute; inset: 0; border: 2px dashed rgba(200,210,220,0.22); border-radius: 50%; }
+
+      .scroll-cue { position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); color: var(--text-light-3); font-size: 13px; display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 3; }
+      .scroll-cue .mouse { width: 24px; height: 38px; border: 2px solid var(--text-light-3); border-radius: 14px; position: relative; }
+      .scroll-cue .mouse::after { content: ""; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); width: 4px; height: 8px; background: var(--accent); border-radius: 2px; animation: wheel 1.6s infinite; }
+      @keyframes wheel { 0% { opacity: 1; top: 7px; } 100% { opacity: 0; top: 20px; } }
+
+      /* ============================================================
+         Features
+         ============================================================ */
+      .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+      .feature-card {
+        background: var(--bg-light-2); border: 1px solid var(--border-light); border-radius: var(--radius-lg);
+        padding: 32px 26px; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+      }
+      .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--accent); }
+      .feature-card .ico { width: 56px; height: 56px; border-radius: 14px; background: var(--accent-soft); color: var(--accent-dark); display: grid; place-items: center; font-size: 24px; margin-bottom: 20px; }
+      .feature-card h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; color: var(--text-dark); }
+      .feature-card p { font-size: 14.5px; color: var(--text-dark-2); }
+
+      /* ============================================================
+         Products
+         ============================================================ */
+      .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+      .tab {
+        padding: 12px 24px; border-radius: 999px; font-size: 14.5px; font-weight: 600;
+        border: 1.5px solid var(--border-dark); color: var(--text-light-2); transition: all 0.22s var(--ease);
+        display: inline-flex; align-items: center; gap: 8px;
+      }
+      .tab:hover { color: var(--accent); border-color: var(--accent); }
+      .tab.active { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
+      .tab .count { font-size: 12px; opacity: 0.7; }
+
+      .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+      .product-card {
+        background: var(--bg-dark-3); border: 1px solid var(--border-dark); border-radius: var(--radius-lg);
+        padding: 26px 22px; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+        display: flex; flex-direction: column;
+      }
+      .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+      .product-card .p-ico {
+        width: 100%; aspect-ratio: 16/10; border-radius: var(--radius-md); margin-bottom: 18px;
+        background: linear-gradient(135deg, #243447, #1a2a3a); display: grid; place-items: center;
+        color: var(--accent); font-size: 44px; border: 1px solid var(--border-dark);
+      }
+      .product-card .p-cat { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+      .product-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+      .product-card .p-specs { font-size: 13.5px; color: var(--text-light-3); margin-bottom: 16px; flex-grow: 1; }
+      .product-card .p-specs li { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--border-dark); }
+      .product-card .p-specs li:last-child { border-bottom: none; }
+      .product-card .p-specs li span:last-child { color: var(--text-light-2); font-weight: 500; }
+      .product-card .p-link { font-size: 14px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; }
+      .product-card .p-link:hover { gap: 10px; }
+
+      .accessory-card { grid-column: span 1; }
+      .accessory-card .p-ico { aspect-ratio: auto; height: 110px; font-size: 38px; }
+      .accessory-card .p-desc { font-size: 13.5px; color: var(--text-light-3); margin-bottom: 16px; flex-grow: 1; }
+
+      /* ============================================================
+         Specifications table
+         ============================================================ */
+      .spec-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); border: 1px solid var(--border-light); background: var(--bg-light-2); }
+      .spec-table { width: 100%; border-collapse: collapse; min-width: 880px; }
+      .spec-table thead th {
+        position: sticky; top: 0; background: var(--bg-dark); color: var(--text-light);
+        font-size: 13px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+        padding: 18px 18px; text-align: left; border-bottom: 2px solid var(--accent); cursor: pointer; user-select: none;
+        white-space: nowrap; transition: background 0.2s var(--ease);
+      }
+      .spec-table thead th:hover { background: #0f1a23; }
+      .spec-table thead th .sort-ico { margin-left: 6px; opacity: 0.4; font-size: 11px; }
+      .spec-table thead th.sorted-asc .sort-ico, .spec-table thead th.sorted-desc .sort-ico { opacity: 1; color: var(--accent); }
+      .spec-table tbody td { padding: 15px 18px; font-size: 14px; color: var(--text-dark); border-bottom: 1px solid var(--border-light); white-space: nowrap; }
+      .spec-table tbody tr:nth-child(even) { background: #fafbfc; }
+      .spec-table tbody tr:hover { background: var(--accent-soft); }
+      .spec-table .cat-pill { display: inline-block; padding: 4px 12px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+      .cat-pill.ceiling { background: rgba(232,184,48,0.15); color: #9a7a18; }
+      .cat-pill.mobile { background: rgba(46,204,113,0.15); color: #1e8e4e; }
+      .cat-pill.accessory { background: rgba(52,152,219,0.15); color: #2471a3; }
+      .spec-table tfoot td { padding: 14px 18px; font-size: 12.5px; color: var(--text-dark-2); font-style: italic; border-top: 2px solid var(--border-light); background: #fafbfc; }
+
+      /* ============================================================
+         Applications
+         ============================================================ */
+      .app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+      .app-card {
+        background: var(--bg-dark-3); border: 1px solid var(--border-dark); border-radius: var(--radius-lg);
+        padding: 32px 26px; transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+        position: relative; overflow: hidden;
+      }
+      .app-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s var(--ease); }
+      .app-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: rgba(232,184,48,0.4); }
+      .app-card:hover::before { transform: scaleX(1); }
+      .app-card .ico { width: 60px; height: 60px; border-radius: 16px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 26px; margin-bottom: 22px; }
+      .app-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+      .app-card p { font-size: 14.5px; color: var(--text-light-2); }
+
+      /* ============================================================
+         Contact
+         ============================================================ */
+      .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+      .contact-info h3 { font-size: 26px; font-weight: 800; margin-bottom: 16px; }
+      .contact-info p { color: var(--text-light-2); margin-bottom: 28px; max-width: 420px; }
+      .contact-list { display: flex; flex-direction: column; gap: 18px; margin-bottom: 32px; }
+      .contact-list li { display: flex; align-items: flex-start; gap: 16px; }
+      .contact-list .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); display: grid; place-items: center; font-size: 17px; flex-shrink: 0; }
+      .contact-list .meta .l { font-size: 13px; color: var(--text-light-3); text-transform: uppercase; letter-spacing: 1px; }
+      .contact-list .meta .v { font-size: 15.5px; font-weight: 600; color: var(--text-light); }
+      .contact-list .meta a { color: var(--text-light); transition: color 0.2s var(--ease); }
+      .contact-list .meta a:hover { color: var(--accent); }
+      .social-row { display: flex; gap: 12px; }
+      .social-row a { width: 44px; height: 44px; border-radius: 12px; background: var(--bg-dark-3); border: 1px solid var(--border-dark); display: grid; place-items: center; color: var(--text-light-2); font-size: 18px; transition: all 0.22s var(--ease); }
+      .social-row a:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); transform: translateY(-3px); }
+
+      .contact-form {
+        background: var(--bg-light-2); border-radius: var(--radius-lg); padding: 36px;
+        box-shadow: var(--shadow-md); color: var(--text-dark);
+      }
+      .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 18px; }
+      .field { display: flex; flex-direction: column; gap: 7px; }
+      .field.full { grid-column: 1 / -1; }
+      .field label { font-size: 13px; font-weight: 600; color: var(--text-dark); }
+      .field label .req { color: var(--error); }
+      .field input, .field textarea {
+        padding: 13px 15px; border: 1.5px solid var(--border-light); border-radius: var(--radius-sm);
+        font-family: inherit; font-size: 14.5px; color: var(--text-dark); background: #fbfcfd;
+        transition: border-color 0.2s var(--ease), box-shadow 0.2s var(--ease);
+      }
+      .field textarea { resize: vertical; min-height: 120px; }
+      .field input:focus, .field textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+      .field .err-msg { font-size: 12.5px; color: var(--error); display: none; }
+      .field.invalid input, .field.invalid textarea { border-color: var(--error); }
+      .field.invalid .err-msg { display: block; }
+      .form-submit { margin-top: 8px; width: 100%; justify-content: center; }
+      .form-success {
+        display: none; align-items: center; gap: 12px; padding: 16px 18px; margin-bottom: 18px;
+        background: rgba(46,204,113,0.12); border: 1px solid rgba(46,204,113,0.4); border-radius: var(--radius-sm); color: #1e8e4e; font-size: 14.5px; font-weight: 500;
+      }
+      .form-success.show { display: flex; }
+      .spinner { width: 18px; height: 18px; border: 2px solid rgba(26,42,58,0.2); border-top-color: var(--bg-dark); border-radius: 50%; animation: spin 0.7s linear infinite; }
+
+      /* ============================================================
+         Footer
+         ============================================================ */
+      .footer { background: #0f1a23; padding: 64px 0 28px; border-top: 1px solid var(--border-dark); }
+      .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 44px; }
+      .footer .brand { margin-bottom: 16px; }
+      .footer-about p { font-size: 14px; color: var(--text-light-3); max-width: 320px; }
+      .footer-col h4 { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-light); margin-bottom: 18px; }
+      .footer-col ul { display: flex; flex-direction: column; gap: 11px; }
+      .footer-col a { font-size: 14px; color: var(--text-light-3); transition: color 0.2s var(--ease); }
+      .footer-col a:hover { color: var(--accent); }
+      .footer-bottom { padding-top: 24px; border-top: 1px solid var(--border-dark); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+      .footer-bottom p { font-size: 13px; color: var(--text-light-3); }
+      .footer-bottom .made { font-size: 13px; color: var(--text-light-3); }
+      .footer-bottom .made span { color: var(--accent); }
+
+      /* ============================================================
+         Reveal animations
+         ============================================================ */
+      .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+      .reveal.in { opacity: 1; transform: none; }
+      .reveal[data-delay="1"] { transition-delay: 0.08s; }
+      .reveal[data-delay="2"] { transition-delay: 0.16s; }
+      .reveal[data-delay="3"] { transition-delay: 0.24s; }
+      .reveal[data-delay="4"] { transition-delay: 0.32s; }
+
+      /* ============================================================
+         Responsive
+         ============================================================ */
+      @media (max-width: 1024px) {
+        .features-grid { grid-template-columns: repeat(2, 1fr); }
+        .product-grid { grid-template-columns: repeat(3, 1fr); }
+        .app-grid { grid-template-columns: repeat(2, 1fr); }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+      }
+      @media (max-width: 768px) {
+        .section { padding: 72px 0; }
+        .nav-links, .nav-cta .btn { display: none; }
+        .nav-toggle { display: grid; place-items: center; }
+        .nav-links.mobile-open {
+          display: flex; flex-direction: column; align-items: stretch; gap: 0;
+          position: fixed; top: var(--header-h); left: 0; right: 0; bottom: 0;
+          background: var(--bg-dark-2); padding: 20px 24px; overflow-y: auto; border-top: 1px solid var(--border-dark);
+        }
+        .nav-links.mobile-open > li { width: 100%; }
+        .nav-links.mobile-open > li > a, .nav-links.mobile-open > li > button { width: 100%; justify-content: space-between; padding: 16px 12px; border-bottom: 1px solid var(--border-dark); }
+        .nav-links.mobile-open .dropdown {
+          position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none;
+          background: transparent; border: none; padding: 0 0 0 16px; min-width: 0; max-height: 0; overflow: hidden; transition: max-height 0.3s var(--ease);
+        }
+        .nav-links.mobile-open .has-dropdown.open .dropdown { max-height: 260px; padding: 4px 0 8px 16px; }
+        .nav-links.mobile-open .dropdown a { border-bottom: 1px solid var(--border-dark); }
+
+        .hero { min-height: auto; padding: calc(var(--header-h) + 40px) 0 80px; }
+        .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+        .hero-copy .badge, .hero-actions { justify-content: center; }
+        .hero p.lead { margin-left: auto; margin-right: auto; }
+        .hero-stats { justify-content: center; gap: 28px; }
+        .fan { width: min(320px, 70vw); }
+
+        .product-grid { grid-template-columns: repeat(2, 1fr); }
+        .app-grid { grid-template-columns: 1fr; }
+        .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+        .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+      }
+      @media (max-width: 560px) {
+        .container { padding: 0 18px; }
+        .features-grid { grid-template-columns: 1fr; }
+        .product-grid { grid-template-columns: 1fr; }
+        .form-row { grid-template-columns: 1fr; }
+        .hero-stats { gap: 20px; }
+        .hero-stats .stat .num { font-size: 24px; }
+        .contact-form { padding: 26px 22px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .fan-blades { animation: none; }
+        .scroll-cue .mouse::after { animation: none; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+        html { scroll-behavior: auto; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===================== HEADER ===================== -->
+    <header class="header" id="header">
+      <div class="container">
+        <nav class="nav" aria-label="Primary">
+          <a href="#home" class="brand" aria-label="AXTELL FAN home">
+            <span class="brand-mark"><i class="fa-solid fa-fan"></i></span>
+            AXTELL<span>FAN</span>
+          </a>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li class="has-dropdown" id="productsNav">
+              <button type="button" aria-haspopup="true" aria-expanded="false">
+                Products <i class="fa-solid fa-chevron-down" style="font-size:11px;"></i>
+              </button>
+              <div class="dropdown" role="menu">
+                <a href="#products" data-filter="ceiling" role="menuitem"><i class="fa-solid fa-fan"></i> Ceiling Fan</a>
+                <a href="#products" data-filter="mobile" role="menuitem"><i class="fa-solid fa-truck-medical"></i> Mobile Fan</a>
+                <a href="#products" data-filter="accessory" role="menuitem"><i class="fa-solid fa-screwdriver-wrench"></i> Accessories</a>
+              </div>
+            </li>
+            <li><a href="#specs">Specifications</a></li>
+            <li><a href="#application">Application</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+          </ul>
+          <div class="nav-cta">
+            <a href="#contact" class="btn btn--primary">Get a Quote <i class="fa-solid fa-arrow-right"></i></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- ===================== HERO ===================== -->
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-inner">
+            <div class="hero-copy">
+              <span class="badge"><i class="fa-solid fa-bolt"></i> Industrial-Grade Performance</span>
+              <h1>Massive Coverage.<br><span class="accent">Ultra-Low Noise.</span><br>Energy Efficient.</h1>
+              <p class="lead">AXTELL industrial fans deliver powerful airflow across the largest facilities — built rugged, engineered quiet, and designed to cut your energy bill.</p>
+              <div class="hero-actions">
+                <a href="#products" class="btn btn--primary">View Products <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#contact" class="btn btn--ghost">Contact Us</a>
+              </div>
+              <div class="hero-stats">
+                <div class="stat"><div class="num">7.3m</div><div class="label">Max Diameter</div></div>
+                <div class="stat"><div class="num">1.5kW</div><div class="label">Max Power</div></div>
+                <div class="stat"><div class="num">2,500m²</div><div class="label">Coverage</div></div>
+                <div class="stat"><div class="num">38dB</div><div class="label">Min Noise</div></div>
+              </div>
+            </div>
+            <div class="fan-stage">
+              <div class="fan-glow"></div>
+              <div class="fan" aria-hidden="true">
+                <div class="fan-ring"></div>
+                <div class="fan-blades">
+                  <div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div><div class="blade"></div>
+                </div>
+                <div class="fan-hub"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-cue" aria-hidden="true">
+          <div class="mouse"></div>
+          <span>Scroll</span>
+        </div>
+      </section>
+
+      <!-- ===================== FEATURES ===================== -->
+      <section class="section section--light" id="features">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Why AXTELL</span>
+            <h2>Engineered for Demanding Environments</h2>
+            <p>Every AXTELL fan is built around four core promises — so your facility stays cool, comfortable, and productive.</p>
+          </div>
+          <div class="features-grid">
+            <div class="feature-card reveal" data-delay="1">
+              <div class="ico"><i class="fa-solid fa-wind"></i></div>
+              <h3>Massive Coverage</h3>
+              <p>Up to 2,500 m² of even airflow from a single unit — eliminating dead zones across wide-span spaces.</p>
+            </div>
+            <div class="feature-card reveal" data-delay="2">
+              <div class="ico"><i class="fa-solid fa-bolt-lightning"></i></div>
+              <h3>High Efficiency</h3>
+              <p>Aerodynamic blades and brushless motors deliver big airflow on remarkably low power draw.</p>
+            </div>
+            <div class="feature-card reveal" data-delay="3">
+              <div class="ico"><i class="fa-solid fa-volume-low"></i></div>
+              <h3>Ultra-Low Noise</h3>
+              <p>Precision-balanced blades keep operating noise as low as 38 dB — quiet enough for offices.</p>
+            </div>
+            <div class="feature-card reveal" data-delay="4">
+              <div class="ico"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3>Safe & Reliable</h3>
+              <p>Integrated safety cables, sealed motors, and a 5-year warranty back every installation.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PRODUCTS ===================== -->
+      <section class="section section--dark" id="products">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Our Products</span>
+            <h2>Find the Right Fan for Your Facility</h2>
+            <p>Browse our full range of industrial ceiling fans, mobile fans, and accessories.</p>
+          </div>
+          <div class="tabs reveal" role="tablist">
+            <button class="tab active" data-filter="ceiling" role="tab"><i class="fa-solid fa-fan"></i> Ceiling Fan <span class="count">8</span></button>
+            <button class="tab" data-filter="mobile" role="tab"><i class="fa-solid fa-truck-medical"></i> Mobile Fan <span class="count">5</span></button>
+            <button class="tab" data-filter="accessory" role="tab"><i class="fa-solid fa-screwdriver-wrench"></i> Accessories <span class="count">8</span></button>
+          </div>
+          <div class="product-grid" id="productGrid"></div>
+        </div>
+      </section>
+
+      <!-- ===================== SPECIFICATIONS ===================== -->
+      <section class="section section--light" id="specs">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Technical Data</span>
+            <h2>Full Specifications</h2>
+            <p>Compare every model side by side. Click any column header to sort the table.</p>
+          </div>
+          <div class="spec-wrap reveal">
+            <table class="spec-table" id="specTable">
+              <thead>
+                <tr>
+                  <th data-type="string" data-key="category">Category <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="string" data-key="model">Model <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="diameter">Diameter (mm) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="power">Power (kW) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="speed">Speed (RPM) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="airflow">Airflow (m³/min) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="noise">Noise (dB) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                  <th data-type="number" data-key="weight">Weight (kg) <span class="sort-ico"><i class="fa-solid fa-sort"></i></span></th>
+                </tr>
+              </thead>
+              <tbody id="specBody"></tbody>
+              <tfoot>
+                <tr><td colspan="8">* All listed models are Ceiling Fan series. Mobile Fan and Accessories specifications are available on request.</td></tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== APPLICATION ===================== -->
+      <section class="section section--dark" id="application">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Applications</span>
+            <h2>Built for Every Industrial Space</h2>
+            <p>From heavy manufacturing to public venues, AXTELL fans keep air moving where it matters most.</p>
+          </div>
+          <div class="app-grid" id="appGrid"></div>
+        </div>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="section section--light" id="contact">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Get in Touch</span>
+            <h2>Request a Quote</h2>
+            <p>Tell us about your facility and our engineers will recommend the right fan configuration.</p>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-info reveal">
+              <h3>Let's talk about your project</h3>
+              <p>Our team responds within one business day. For urgent enquiries, call us directly during business hours.</p>
+              <ul class="contact-list">
+                <li>
+                  <div class="ico"><i class="fa-solid fa-location-dot"></i></div>
+                  <div class="meta">
+                    <div class="l">Address</div>
+                    <div class="v">5211 Co Rd 597,Farmersville,TX 75442</div>
+                  </div>
+                </li>
+                <li>
+                  <div class="ico"><i class="fa-solid fa-phone"></i></div>
+                  <div class="meta">
+                    <div class="l">Phone</div>
+                    <div class="v"><a href="tel:(972) 807 5555">(972) 807 5555</a></div>
+                  </div>
+                </li>
+                <li>
+                  <div class="ico"><i class="fa-solid fa-envelope"></i></div>
+                  <div class="meta">
+                    <div class="l">Email</div>
+                    <div class="v"><a href="saelsl@axtell.us">saels@axtell.us</a></div>
+                  </div>
+                </li>
+                <li>
+                  </div>
+                </li>
+              </ul>
+              <div class="social-row" aria-label="Social media">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+              </div>
+            </div>
+            <form class="contact-form reveal" id="contactForm" novalidate>
+              <div class="form-success" id="formSuccess">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Thanks! Your enquiry has been received — we'll reply within one business day.</span>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="name">Full Name <span class="req">*</span></label>
+                  <input type="text" id="name" name="name" autocomplete="name" required />
+                  <span class="err-msg">Please enter your full name.</span>
+                </div>
+                <div class="field">
+                  <label for="email">Email <span class="req">*</span></label>
+                  <input type="email" id="email" name="email" autocomplete="email" required />
+                  <span class="err-msg">Please enter a valid email address.</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" />
+                  <span class="err-msg">Please enter a valid phone number.</span>
+                </div>
+                <div class="field">
+                  <label for="company">Company</label>
+                  <input type="text" id="company" name="company" autocomplete="organization" />
+                  <span class="err-msg"></span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="field full">
+                  <label for="message">Message <span class="req">*</span></label>
+                  <textarea id="message" name="message" required placeholder="Tell us about your facility size, ceiling height, and airflow needs…"></textarea>
+                  <span class="err-msg">Please tell us a bit about your project.</span>
+                </div>
+              </div>
+              <button type="submit" class="btn btn--dark form-submit" id="submitBtn">
+                <span class="btn-label">Send Enquiry <i class="fa-solid fa-paper-plane"></i></span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-about">
+            <a href="#home" class="brand">
+              <span class="brand-mark"><i class="fa-solid fa-fan"></i></span>
+              AXTELL<span>FAN</span>
+            </a>
+            <p>Manufacturer of industrial-grade ceiling and mobile fans. Massive coverage, ultra-low noise, energy efficient — built to last.</p>
+            <div class="social-row" style="margin-top:20px;">
+              <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+              <a href="#" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+              <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>Products</h4>
+            <ul>
+              <li><a href="#products" data-filter="ceiling">Ceiling Fan</a></li>
+              <li><a href="#products" data-filter="mobile">Mobile Fan</a></li>
+              <li><a href="#products" data-filter="accessory">Accessories</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#specs">Specifications</a></li>
+              <li><a href="#application">Applications</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <ul>
+              <li><a href="tel:+862188889999">+86 21 8888 9999</a></li>
+              <li><a href="mailto:info@axtellfan.com">info@axtellfan.com</a></li>
+              <li><a href="#">No. 88 Industrial Ave, Shanghai</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>© <span id="year"></span> AXTELL FAN Co., Ltd. All rights reserved.</p>
+          <span class="made">Built for <span>industrial performance</span></span>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ============================================================
+         AXTELL FAN — data
+         ============================================================ */
+      const CEILING_FANS = [
+        { model: 'CF-1000', diameter: 1000, power: 0.75, speed: 120, airflow: 150, noise: 42, weight: 25 },
+        { model: 'CF-2000', diameter: 2000, power: 0.85, speed: 110, airflow: 220, noise: 43, weight: 32 },
+        { model: 'CF-3000', diameter: 3000, power: 1.00, speed: 95,  airflow: 320, noise: 45, weight: 41 },
+        { model: 'CF-4000', diameter: 4000, power: 1.10, speed: 85,  airflow: 410, noise: 46, weight: 52 },
+        { model: 'CF-5000', diameter: 5000, power: 1.20, speed: 75,  airflow: 520, noise: 47, weight: 64 },
+        { model: 'CF-6000', diameter: 6000, power: 1.30, speed: 65,  airflow: 640, noise: 48, weight: 78 },
+        { model: 'CF-7000', diameter: 7000, power: 1.40, speed: 58,  airflow: 760, noise: 49, weight: 92 },
+        { model: 'CF-8000', diameter: 7300, power: 1.50, speed: 52,  airflow: 880, noise: 50, weight: 108 }
+      ];
+      const MOBILE_FANS = [
+        { model: 'MF-150', diameter: 1500, power: 0.45, speed: 280, airflow: 180, noise: 54, weight: 18 },
+        { model: 'MF-250', diameter: 2500, power: 0.65, speed: 240, airflow: 260, noise: 56, weight: 26 },
+        { model: 'MF-350', diameter: 3500, power: 0.90, speed: 200, airflow: 360, noise: 58, weight: 38 },
+        { model: 'MF-450', diameter: 4500, power: 1.10, speed: 170, airflow: 470, noise: 60, weight: 52 },
+        { model: 'MF-550', diameter: 5500, power: 1.30, speed: 140, airflow: 580, noise: 62, weight: 68 }
+      ];
+      const ACCESSORIES = [
+        { model: 'Remote Controller', desc: 'Wireless RF remote with 6-speed control and timer scheduling.' },
+        { model: 'Wall Mount Bracket', desc: 'Heavy-gauge steel bracket for secure mobile-fan placement.' },
+        { model: 'Extension Rod', desc: 'Telescopic downrod in 0.5–1.5 m lengths for high ceilings.' },
+        { model: 'Safety Cable', desc: 'Galvanised steel safety cable rated to 500 kg load.' },
+        { model: 'Speed Controller', desc: 'Variable-frequency drive for smooth, stepless airflow tuning.' },
+        { model: 'Blade Set', desc: 'Replacement aerodynamic blade set, sold per fan model.' },
+        { model: 'Motor Cover', desc: 'Weather-sealed cover protecting the motor in humid environments.' },
+        { model: 'Installation Kit', desc: 'Complete mounting hardware kit with templates and fasteners.' }
+      ];
+
+      const APPLICATIONS = [
+        { icon: 'fa-industry', title: 'Manufacturing Plants', text: 'Clear heat and fumes from production lines, improving worker comfort and equipment longevity.' },
+        { icon: 'fa-warehouse', title: 'Warehouses & Logistics', text: 'Even out temperature layers in high-bay storage to protect goods and reduce HVAC load.' },
+        { icon: 'fa-volleyball', title: 'Sports Halls', text: 'Quiet, powerful airflow keeps athletes cool and spectators comfortable during events.' },
+        { icon: 'fa-building', title: 'Exhibition Centers', text: 'Condition vast open spans without ductwork, maintaining comfort across thousands of visitors.' },
+        { icon: 'fa-seedling', title: 'Agricultural Facilities', text: 'Circulate air through barns and greenhouses to support livestock and crop health.' },
+        { icon: 'fa-cart-shopping', title: 'Shopping Malls', text: 'Deliver a premium ambient experience in atriums and retail concourses, quietly.' }
+      ];
+
+      /* ============================================================
+         Render: products
+         ============================================================ */
+      const productGrid = document.getElementById('productGrid');
+      const catLabel = { ceiling: 'Ceiling Fan', mobile: 'Mobile Fan', accessory: 'Accessory' };
+      const catIcon = { ceiling: 'fa-fan', mobile: 'fa-truck-medical', accessory: 'fa-screwdriver-wrench' };
+
+      function renderProducts(filter) {
+        productGrid.innerHTML = '';
+        if (filter === 'ceiling' || filter === 'all') {
+          CEILING_FANS.forEach(f => productGrid.appendChild(productCard('ceiling', f)));
+        }
+        if (filter === 'mobile' || filter === 'all') {
+          MOBILE_FANS.forEach(f => productGrid.appendChild(productCard('mobile', f)));
+        }
+        if (filter === 'accessory' || filter === 'all') {
+          ACCESSORIES.forEach(a => productGrid.appendChild(accessoryCard(a)));
+        }
+        // re-observe newly added reveals
+        document.querySelectorAll('#productGrid .reveal').forEach(el => revealObserver.observe(el));
+      }
+
+      function productCard(cat, f) {
+        const el = document.createElement('article');
+        el.className = 'product-card reveal';
+        el.innerHTML = `
+          <div class="p-ico"><i class="fa-solid ${catIcon[cat]}"></i></div>
+          <div class="p-cat">${catLabel[cat]}</div>
+          <h3>${f.model}</h3>
+          <ul class="p-specs">
+            <li><span>Diameter</span><span>${f.diameter} mm</span></li>
+            <li><span>Power</span><span>${f.power} kW</span></li>
+            <li><span>Airflow</span><span>${f.airflow} m³/min</span></li>
+            <li><span>Noise</span><span>${f.noise} dB</span></li>
+          </ul>
+          <a class="p-link" href="#specs">View specs <i class="fa-solid fa-arrow-right-long"></i></a>`;
+        return el;
+      }
+
+      function accessoryCard(a) {
+        const el = document.createElement('article');
+        el.className = 'product-card accessory-card reveal';
+        el.innerHTML = `
+          <div class="p-ico"><i class="fa-solid ${catIcon.accessory}"></i></div>
+          <div class="p-cat">Accessory</div>
+          <h3>${a.model}</h3>
+          <p class="p-desc">${a.desc}</p>
+          <a class="p-link" href="#contact">Enquire <i class="fa-solid fa-arrow-right-long"></i></a>`;
+        return el;
+      }
+
+      /* ============================================================
+         Render: specifications table
+         ============================================================ */
+      const specBody = document.getElementById('specBody');
+      const specRows = [];
+
+      CEILING_FANS.forEach(f => specRows.push({ category: 'Ceiling', ...f }));
+
+      function renderSpecs(rows) {
+        specBody.innerHTML = '';
+        rows.forEach(r => {
+          const tr = document.createElement('tr');
+          const cls = r.category.toLowerCase();
+          tr.innerHTML = `
+            <td><span class="cat-pill ${cls}">${r.category}</span></td>
+            <td><strong>${r.model}</strong></td>
+            <td>${r.diameter || '—'}</td>
+            <td>${r.power ? r.power.toFixed(2) : '—'}</td>
+            <td>${r.speed || '—'}</td>
+            <td>${r.airflow || '—'}</td>
+            <td>${r.noise || '—'}</td>
+            <td>${r.weight ? r.weight.toFixed(1) : '—'}</td>`;
+          specBody.appendChild(tr);
+        });
+      }
+      renderSpecs(specRows);
+
+      // Sorting
+      let sortState = { key: null, dir: null };
+      document.querySelectorAll('#specTable thead th').forEach(th => {
+        th.addEventListener('click', () => {
+          const key = th.dataset.key;
+          const type = th.dataset.type;
+          let dir = 'asc';
+          if (sortState.key === key && sortState.dir === 'asc') dir = 'desc';
+          sortState = { key, dir };
+          const sorted = [...specRows].sort((a, b) => {
+            let va = a[key], vb = b[key];
+            if (type === 'number') { va = Number(va) || 0; vb = Number(vb) || 0; return dir === 'asc' ? va - vb : vb - va; }
+            return dir === 'asc' ? String(va).localeCompare(String(vb)) : String(vb).localeCompare(String(va));
+          });
+          renderSpecs(sorted);
+          document.querySelectorAll('#specTable thead th').forEach(t => {
+            t.classList.remove('sorted-asc', 'sorted-desc');
+            t.querySelector('.sort-ico').innerHTML = '<i class="fa-solid fa-sort"></i>';
+          });
+          th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+          th.querySelector('.sort-ico').innerHTML = `<i class="fa-solid fa-sort-${dir === 'asc' ? 'up' : 'down'}"></i>`;
+        });
+      });
+
+      /* ============================================================
+         Render: applications
+         ============================================================ */
+      const appGrid = document.getElementById('appGrid');
+      APPLICATIONS.forEach((a, i) => {
+        const el = document.createElement('article');
+        el.className = 'app-card reveal';
+        el.dataset.delay = (i % 3) + 1;
+        el.innerHTML = `
+          <div class="ico"><i class="fa-solid ${a.icon}"></i></div>
+          <h3>${a.title}</h3>
+          <p>${a.text}</p>`;
+        appGrid.appendChild(el);
+      });
+
+      /* ============================================================
+         Tabs / filter
+         ============================================================ */
+      const tabs = document.querySelectorAll('.tab');
+      function setFilter(filter) {
+        tabs.forEach(t => t.classList.toggle('active', t.dataset.filter === filter));
+        renderProducts(filter);
+      }
+      tabs.forEach(t => t.addEventListener('click', () => setFilter(t.dataset.filter)));
+
+      // Dropdown + footer links that filter
+      document.querySelectorAll('[data-filter]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const f = a.dataset.filter;
+          if (f) setFilter(f);
+          // close mobile menu
+          navLinks.classList.remove('mobile-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+          navToggle.querySelector('i').className = 'fa-solid fa-bars';
+        });
+      });
+
+      /* ============================================================
+         Header scroll state + active link
+         ============================================================ */
+      const header = document.getElementById('header');
+      const navLinksEl = document.getElementById('navLinks');
+      const sections = document.querySelectorAll('main section[id], #home');
+
+      function onScroll() {
+        header.classList.toggle('scrolled', window.scrollY > 30);
+        // active link
+        let current = 'home';
+        const y = window.scrollY + 100;
+        sections.forEach(s => { if (s.offsetTop <= y) current = s.id; });
+        document.querySelectorAll('.nav-links > li > a, .nav-links > li > button').forEach(l => {
+          const href = l.getAttribute('href') || '';
+          l.classList.toggle('active', href === '#' + current);
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ============================================================
+         Mobile menu
+         ============================================================ */
+      const navToggle = document.getElementById('navToggle');
+      navToggle.addEventListener('click', () => {
+        const open = navLinksEl.classList.toggle('mobile-open');
+        navToggle.setAttribute('aria-expanded', String(open));
+        navToggle.querySelector('i').className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+      });
+
+      // Mobile dropdown expand
+      const productsNav = document.getElementById('productsNav');
+      productsNav.querySelector('button').addEventListener('click', (e) => {
+        if (window.innerWidth <= 768) {
+          e.stopPropagation();
+          productsNav.classList.toggle('open');
+          const expanded = productsNav.classList.contains('open');
+          productsNav.querySelector('button').setAttribute('aria-expanded', String(expanded));
+        }
+      });
+
+      /* ============================================================
+         Reveal on scroll
+         ============================================================ */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(en => {
+          if (en.isIntersecting) {
+            en.target.classList.add('in');
+            revealObserver.unobserve(en.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      /* ============================================================
+         Contact form validation
+         ============================================================ */
+      const form = document.getElementById('contactForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const formSuccess = document.getElementById('formSuccess');
+
+      function setFieldInvalid(id, invalid) {
+        const field = document.getElementById(id).closest('.field');
+        field.classList.toggle('invalid', invalid);
+      }
+
+      function validate() {
+        let ok = true;
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const nameOk = name.length >= 2; setFieldInvalid('name', !nameOk); ok &&= nameOk;
+        const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); setFieldInvalid('email', !emailOk); ok &&= emailOk;
+        const phoneOk = !phone || /^[+\d][\d\s\-()]{6,}$/.test(phone); setFieldInvalid('phone', !phoneOk); ok &&= phoneOk;
+        const msgOk = message.length >= 10; setFieldInvalid('message', !msgOk); ok &&= msgOk;
+        return ok;
+      }
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formSuccess.classList.remove('show');
+        if (!validate()) return;
+        // loading state
+        submitBtn.disabled = true;
+        submitBtn.querySelector('.btn-label').innerHTML = '<span class="spinner"></span> Sending…';
+        // simulate submission
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          submitBtn.querySelector('.btn-label').innerHTML = 'Send Enquiry <i class="fa-solid fa-paper-plane"></i>';
+          formSuccess.classList.add('show');
+          form.reset();
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1400);
+      });
+
+      // clear invalid state on input
+      form.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('input', () => el.closest('.field').classList.remove('invalid'));
+      });
+
+      /* ============================================================
+         Init
+         ============================================================ */
+      document.getElementById('year').textContent = new Date().getFullYear();
+      renderProducts('ceiling');
+    </script>
+  </body>
+</html>
