@@ -1,0 +1,12 @@
+/* global.css — basic scaffold styles for the axtell-fan project
+   Fill this file with your global CSS variables and base rules. */
+:root {
+  --bg: #0f1724;
+  --accent: #f5c542;
+  --font-sans: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+html,body { height: 100%; }
+body { margin: 0; font-family: var(--font-sans); background: var(--bg); color: #fff; }
+
+/* Add your global resets and utilities here */
