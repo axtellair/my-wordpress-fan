@@ -1,0 +1,89 @@
+/**
+ * Ceiling Fan Products Data
+ * All ceiling fan product specifications and details
+ */
+
+export const CEILING_FANS = [
+  {
+    model: 'CF-1000',
+    image: 'https://picsum.photos/seed/CF1000/400/250',
+    diameter: 1000,
+    power: 0.75,
+    speed: 120,
+    airflow: 150,
+    noise: 42,
+    weight: 25
+  },
+  {
+    model: 'CF-2000',
+    image: 'https://picsum.photos/seed/CF2000/400/250',
+    diameter: 2000,
+    power: 0.85,
+    speed: 110,
+    airflow: 220,
+    noise: 43,
+    weight: 32
+  },
+  {
+    model: 'CF-3000',
+    image: 'https://picsum.photos/seed/CF3000/400/250',
+    diameter: 3000,
+    power: 1.0,
+    speed: 95,
+    airflow: 320,
+    noise: 45,
+    weight: 41
+  },
+  {
+    model: 'CF-4000',
+    image: 'https://picsum.photos/seed/CF4000/400/250',
+    diameter: 4000,
+    power: 1.1,
+    speed: 85,
+    airflow: 410,
+    noise: 46,
+    weight: 52
+  },
+  {
+    model: 'CF-5000',
+    image: 'https://picsum.photos/seed/CF5000/400/250',
+    diameter: 5000,
+    power: 1.2,
+    speed: 75,
+    airflow: 520,
+    noise: 47,
+    weight: 64
+  },
+  {
+    model: 'CF-6000',
+    image: 'https://picsum.photos/seed/CF6000/400/250',
+    diameter: 6000,
+    power: 1.3,
+    speed: 65,
+    airflow: 640,
+    noise: 48,
+    weight: 78
+  },
+  {
+    model: 'CF-7000',
+    image: 'https://picsum.photos/seed/CF7000/400/250',
+    diameter: 7000,
+    power: 1.4,
+    speed: 58,
+    airflow: 760,
+    noise: 49,
+    weight: 92
+  },
+  {
+    model: 'CF-8000',
+    image: 'https://picsum.photos/seed/CF8000/400/250',
+    diameter: 7300,
+    power: 1.5,
+    speed: 52,
+    airflow: 880,
+    noise: 50,
+    weight: 108
+  }
+];
+
+export default CEILING_FANS;
